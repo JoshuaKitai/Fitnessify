@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+/* Global wrapper */
+.app {
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to bottom, #1c1c1e, #2c2c2e);
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Navigation Bar */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  padding: 25px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: 600;
+  color: white;
+}
+
+.header-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: white;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.date {
+  font-size: 0.9rem;
+  color: #fdfdfd;
+  font-weight: 300;
+}
+
+/* Layout below the banner */
+.content-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.content-left,
+.content-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Section headers */
+.section-title {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+/* Calorie Tracker */
+.calorie-tracker {
+  padding: 20px;
+  background: #2c2c2e;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.calorie-tracker input {
+  margin: 0 10px 10px 0;
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  background: #3a3a3c;
+  color: white;
+}
+
+.calorie-tracker button {
+  padding: 6px 10px;
+  background: #ffb347;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: black;
+}
+
+.calorie-tracker button:hover {
+  background: #ffd580;
+}
+
+.calorie-tracker ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+/* Progress Tracker */
+.progress-tracker {
+  padding: 20px;
+  background: #2c2c2e;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.progress-tracker input {
+  margin: 0 10px 10px 0;
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  background: #3a3a3c;
+  color: white;
+}
+
+.progress-tracker button {
+  padding: 6px 10px;
+  background: #add8e6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: black;
+}
+
+.progress-tracker button:hover {
+  background: #d0eaff;
+}

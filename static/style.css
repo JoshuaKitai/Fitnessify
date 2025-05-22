@@ -1,0 +1,21 @@
+.middle {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    background-color: burlywood;
+    width: 300px;
+}
+.left {
+    text-align: left;
+    margin: 0 auto;
+    display: block;
+    background-color: burlywood;
+    width: 300px;
+}
+.right {
+    text-align: right;
+    margin: 0 auto;
+    display: block;
+    background-color: burlywood;
+    width: 300px;
+}
