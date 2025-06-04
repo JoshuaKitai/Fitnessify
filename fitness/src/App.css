@@ -1,3 +1,86 @@
+/* HeroUI-Inspired Fitness App Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* HeroUI Color Palette */
+  --primary-50: #f0f9ff;
+  --primary-100: #e0f2fe;
+  --primary-200: #bae6fd;
+  --primary-300: #7dd3fc;
+  --primary-400: #38bdf8;
+  --primary-500: #0ea5e9;
+  --primary-600: #0284c7;
+  --primary-700: #0369a1;
+  --primary-800: #075985;
+  --primary-900: #0c4a6e;
+
+  --secondary-50: #fafafa;
+  --secondary-100: #f4f4f5;
+  --secondary-200: #e4e4e7;
+  --secondary-300: #d4d4d8;
+  --secondary-400: #a1a1aa;
+  --secondary-500: #71717a;
+  --secondary-600: #52525b;
+  --secondary-700: #3f3f46;
+  --secondary-800: #27272a;
+  --secondary-900: #18181b;
+
+  --success-50: #f0fdf4;
+  --success-100: #dcfce7;
+  --success-200: #bbf7d0;
+  --success-300: #86efac;
+  --success-400: #4ade80;
+  --success-500: #22c55e;
+  --success-600: #16a34a;
+  --success-700: #15803d;
+  --success-800: #166534;
+  --success-900: #14532d;
+
+  --warning-50: #fffbeb;
+  --warning-100: #fef3c7;
+  --warning-200: #fde68a;
+  --warning-300: #fcd34d;
+  --warning-400: #fbbf24;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+  --warning-700: #b45309;
+  --warning-800: #92400e;
+  --warning-900: #78350f;
+
+  --danger-50: #fef2f2;
+  --danger-100: #fee2e2;
+  --danger-200: #fecaca;
+  --danger-300: #fca5a5;
+  --danger-400: #f87171;
+  --danger-500: #ef4444;
+  --danger-600: #dc2626;
+  --danger-700: #b91c1c;
+  --danger-800: #991b1b;
+  --danger-900: #7f1d1d;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;    /* 4px */
+  --spacing-sm: 0.5rem;     /* 8px */
+  --spacing-md: 1rem;       /* 16px */
+  --spacing-lg: 1.5rem;     /* 24px */
+  --spacing-xl: 2rem;       /* 32px */
+  --spacing-2xl: 3rem;      /* 48px */
+  --spacing-3xl: 4rem;      /* 64px */
+
+  /* Border radius */
+  --radius-sm: 0.375rem;    /* 6px */
+  --radius-md: 0.5rem;      /* 8px */
+  --radius-lg: 0.75rem;     /* 12px */
+  --radius-xl: 1rem;        /* 16px */
+  --radius-2xl: 1.5rem;     /* 24px */
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,137 +88,929 @@
 }
 
 body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, var(--secondary-50) 0%, var(--primary-50) 100%);
+  color: var(--secondary-900);
+  line-height: 1.6;
   overflow-x: hidden;
+  min-height: 100vh;
 }
-
 
 /* Global wrapper */
 .app {
-  font-family: 'Poppins', sans-serif;
   padding: 0;
   margin: 0;
-  background: linear-gradient(to bottom, #1c1c1e, #2c2c2e);
   min-height: 100vh;
-  color: white;
-  overflow-x: hidden;
+  background: linear-gradient(135deg, var(--secondary-50) 0%, var(--primary-50) 100%);
 }
 
-/* Navigation Bar */
+/* Navigation Bar - HeroUI Style */
 .navbar {
-  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  margin: var(--spacing-lg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(90deg, #ff7e5f, #feb47b);
-  padding: 25px 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-500), var(--primary-300), var(--success-400));
 }
 
 .logo {
-  font-size: 3rem;
-  font-weight: 600;
-  color: white;
+  font-size: 1.875rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.025em;
 }
 
 .header-title {
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--secondary-700);
   margin: 0;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-align: center;
 }
 
 .date {
-  font-size: 0.9rem;
-  color: #fdfdfd;
-  font-weight: 300;
+  font-size: 0.875rem;
+  color: var(--secondary-500);
+  font-weight: 400;
+  text-align: right;
 }
 
-/* Layout below the banner */
+/* Layout */
 .content-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px;
-  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
 }
 
 .content-left,
 .content-right {
-  flex: 1;
-  min-width: 300px;
+  min-width: 0; /* Prevents grid overflow */
 }
 
-/* Section headers */
-.section-title {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
-  padding-left: 10px;
+/* Card Components - HeroUI Style */
+.calorie-tracker,
+.progress-tracker,
+.goals-section,
+.calendar-history {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.calorie-tracker:hover,
+.progress-tracker:hover,
+.goals-section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-200);
+}
+
+/* Section Headers */
+h1, h2, h3 {
+  color: var(--secondary-900);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--spacing-lg);
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+/* Form Elements - HeroUI Style */
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: var(--secondary-700);
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.875rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 2px solid var(--secondary-200);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--secondary-900);
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: var(--spacing-sm);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+  background: rgba(255, 255, 255, 1);
+}
+
+input::placeholder {
+  color: var(--secondary-400);
+}
+
+/* Buttons - HeroUI Style */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  margin: var(--spacing-xs);
+  min-height: 2.5rem;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-500));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--primary-700), var(--primary-600));
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  background: var(--secondary-100);
+  color: var(--secondary-700);
+  border: 1px solid var(--secondary-200);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--secondary-200);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--danger-600), var(--danger-500));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--danger-700), var(--danger-600));
+  transform: translateY(-1px);
+}
+
+.btn-small {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.75rem;
+  min-height: 2rem;
+}
+
+/* Tables - HeroUI Style */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin: var(--spacing-lg) 0;
+}
+
+th {
+  background: linear-gradient(135deg, var(--secondary-50), var(--secondary-100));
+  color: var(--secondary-700);
+  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--secondary-200);
+}
+
+td {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--secondary-100);
+  color: var(--secondary-800);
+  font-size: 0.875rem;
+}
+
+tr:hover {
+  background: var(--primary-50);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Progress Bars - HeroUI Style */
+.progress-bar {
+  background: var(--secondary-200);
+  border-radius: var(--radius-md);
+  height: 8px;
+  margin: var(--spacing-sm) 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success-500), var(--success-400));
+  border-radius: var(--radius-md);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.progress-fill.over-goal {
+  background: linear-gradient(90deg, var(--warning-500), var(--warning-400));
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.goal-text {
+  font-size: 0.75rem;
+  color: var(--secondary-500);
+  margin-top: var(--spacing-xs);
+}
+
+/* Enhanced Forms */
+.lookup-form,
+.progress-form,
+.goals-form {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Totals/Stats Cards */
+.totals {
+  background: linear-gradient(135deg, var(--primary-50), var(--secondary-50));
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  margin: var(--spacing-lg) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.totals::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-500), var(--success-500));
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.totals h3 {
+  color: var(--primary-700);
+  margin-bottom: var(--spacing-md);
+}
+
+.totals p {
+  margin: var(--spacing-sm) 0;
+  font-size: 0.875rem;
+  color: var(--secondary-700);
+}
+
+/* Chart Container */
+.chart-container {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  margin: var(--spacing-lg) 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.chart-container h3 {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  color: var(--secondary-800);
+}
+
+/* Calendar History */
+.calendar-history {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: visible; /* Allow tooltips to extend outside */
+}
+
+.calendar-history h2 {
+  color: var(--secondary-900);
+  background: rgba(255, 255, 255, 0.95);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--secondary-200);
+  margin-bottom: var(--spacing-lg);
+  text-shadow: none;
   font-weight: 600;
 }
 
-/* Calorie Tracker */
-.calorie-tracker {
-  padding: 20px;
-  background: #2c2c2e;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+.week-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
 }
 
-.calorie-tracker input {
-  margin: 0 10px 10px 0;
-  padding: 6px;
-  border: none;
-  border-radius: 5px;
-  background: #3a3a3c;
-  color: white;
+.week-selector label {
+  color: var(--secondary-900);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.9);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
 }
 
-.calorie-tracker button {
-  padding: 6px 10px;
-  background: #ffb347;
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  position: relative;
+  z-index: 1;
+  overflow: visible; /* Allow tooltips to extend outside */
+}
+
+.day-cell {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  min-height: 200px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: visible; /* Allow tooltips to extend outside */
+  z-index: 2;
+}
+
+.day-cell:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-lg);
+  z-index: 50; /* Ensure hovered cell is on top */
+}
+
+.day-cell.current-day {
+  border-color: var(--success-400);
+  background: linear-gradient(135deg, var(--success-50), rgba(255, 255, 255, 0.95));
+}
+
+.day-cell h3 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: 0.875rem;
+  color: var(--secondary-700);
+  border-bottom: 1px solid var(--secondary-200);
+  padding-bottom: var(--spacing-sm);
+}
+
+.hover-box {
+  position: relative;
+  margin: var(--spacing-sm) 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: default;
+  font-size: 0.75rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.hover-box:hover {
+  transform: scale(1.02);
+  z-index: 200; /* Much higher z-index when hovered */
+}
+
+.macro-box {
+  background: linear-gradient(135deg, var(--warning-100), var(--warning-50));
+  color: var(--warning-800);
+  border: 1px solid var(--warning-200);
+}
+
+.progress-box {
+  background: linear-gradient(135deg, var(--primary-100), var(--primary-50));
+  color: var(--primary-800);
+  border: 1px solid var(--primary-200);
+}
+
+/* Dimmed state for boxes with no data */
+.hover-box[style*="opacity: 0.5"] {
+  background: var(--secondary-100) !important;
+  color: var(--secondary-600) !important;
+  border-color: var(--secondary-300) !important;
+}
+
+.hover-content {
+  display: none;
+  position: fixed; /* Fixed positioning to escape container bounds */
+  background: white;
+  color: var(--secondary-800);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: 9999; /* Very high z-index */
+  min-width: 250px;
+  max-width: 350px;
+  border: 1px solid var(--secondary-300);
+  backdrop-filter: blur(20px);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  white-space: normal; /* Allow text wrapping */
+  margin-top: var(--spacing-xs);
+  pointer-events: none; /* Prevent interference with mouse events */
+}
+
+/* Tooltip arrow */
+.hover-content::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid white;
+}
+
+/* Remove the CSS hover behavior - JavaScript will handle it */
+/* .hover-box:hover .hover-content {
+  display: block;
+} */
+
+/* JavaScript will handle positioning and display */
+.hover-content.show {
+  display: block;
+}
+
+/* Loading States */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  color: var(--secondary-500);
+  font-size: 0.875rem;
+}
+
+.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--secondary-200);
+  border-top: 2px solid var(--primary-500);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: var(--spacing-md);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Alert States */
+.error {
+  background: linear-gradient(135deg, var(--danger-50), var(--danger-100));
+  border: 1px solid var(--danger-200);
+  color: var(--danger-700);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-md) 0;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.success {
+  background: linear-gradient(135deg, var(--success-50), var(--success-100));
+  border: 1px solid var(--success-200);
+  color: var(--success-700);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-md) 0;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Modal - HeroUI Style */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--spacing-lg);
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-2xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--secondary-200);
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--secondary-200);
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--secondary-900);
+}
+
+.close-button {
+  background: none;
   border: none;
-  border-radius: 5px;
+  font-size: 1.5rem;
+  color: var(--secondary-400);
   cursor: pointer;
-  color: black;
+  padding: 0;
+  margin: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
 }
 
-.calorie-tracker button:hover {
-  background: #ffd580;
+.close-button:hover {
+  background: var(--secondary-100);
+  color: var(--secondary-600);
 }
 
-.calorie-tracker ul {
-  margin-top: 10px;
-  padding-left: 20px;
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content-row {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar {
+    margin: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .header-title {
+    font-size: 1rem;
+  }
 }
 
-/* Progress Tracker */
-.progress-tracker {
-  padding: 20px;
-  background: #2c2c2e;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+
+  .week-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .week-selector {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .modal-content {
+    margin: var(--spacing-md);
+    max-width: calc(100vw - 2rem);
+  }
 }
 
-.progress-tracker input {
-  margin: 0 10px 10px 0;
-  padding: 6px;
-  border: none;
-  border-radius: 5px;
-  background: #3a3a3c;
-  color: white;
+@media (max-width: 480px) {
+  .calorie-tracker,
+  .progress-tracker,
+  .goals-section,
+  .calendar-history {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-sm);
+  }
+
+  .navbar {
+    margin: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+
+  .content-row {
+    padding: 0 var(--spacing-sm) var(--spacing-sm);
+  }
 }
 
-.progress-tracker button {
-  padding: 6px 10px;
-  background: #add8e6;
-  border: none;
-  border-radius: 5px;
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.hidden { display: none; }
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-10 { gap: var(--spacing-sm); }
+.gap-20 { gap: var(--spacing-md); }
+.mt-10 { margin-top: var(--spacing-sm); }
+.mt-20 { margin-top: var(--spacing-md); }
+.mb-10 { margin-bottom: var(--spacing-sm); }
+.mb-20 { margin-bottom: var(--spacing-md); }
+
+/* Special Effects */
+.calorie-tracker::before,
+.progress-tracker::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-500), var(--success-500));
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+/* Enhanced Lookup Result */
+.lookup-result {
+  background: linear-gradient(135deg, var(--success-50), var(--primary-50));
+  border: 1px solid var(--success-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.lookup-result::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--success-500), var(--primary-500));
+}
+
+.lookup-result h4 {
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--success-700);
+  font-size: 1.125rem;
+}
+
+/* Enhanced Week Summary */
+.totals.week-summary {
+  background: linear-gradient(135deg, var(--primary-50), var(--success-50));
+  border: 1px solid var(--primary-200);
+  position: relative;
+}
+
+.totals.week-summary::before {
+  background: linear-gradient(90deg, var(--primary-500), var(--success-500), var(--warning-500));
+}
+/* Add these CSS rules to your App.css to fix the dropdown z-index issue */
+
+/* Fix navbar container to allow dropdown overflow */
+.navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  margin: var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: visible !important; /* Allow dropdown to extend outside */
+  z-index: 100; /* High but lower than tooltips */
+}
+
+/* User menu with proper z-index hierarchy */
+.user-menu {
+  position: relative;
+  display: inline-block;
+  z-index: 200; /* Higher than navbar */
+}
+
+.user-menu-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  color: black;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  color: var(--secondary-700);
+  position: relative;
+  z-index: 201;
 }
 
-.progress-tracker button:hover {
-  background: #d0eaff;
+.user-menu-button:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: var(--primary-200);
+  transform: translateY(-1px);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-500), var(--success-500));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Fixed dropdown positioning and z-index */
+.user-menu-dropdown {
+  position: absolute;
+  top: calc(100% + 8px); /* Position below button with gap */
+  right: 0;
+  background: white;
+  border: 1px solid var(--secondary-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  min-width: 200px;
+  z-index: 9999 !important; /* Very high z-index */
+  overflow: visible;
+  backdrop-filter: blur(20px);
+
+  /* Animation */
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure dropdown items are properly styled */
+.user-menu-item {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  background: white;
+  color: var(--secondary-700);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.875rem;
+  position: relative;
+  z-index: 9999;
+}
+
+.user-menu-item:hover {
+  background: var(--secondary-50);
+  transform: none;
+}
+
+.user-menu-item.danger {
+  color: var(--danger-600);
+}
+
+.user-menu-item.danger:hover {
+  background: var(--danger-50);
+}
+
+/* Ensure all content containers allow dropdown overflow */
+.app {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--secondary-50) 0%, var(--primary-50) 100%);
+  position: relative;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto; /* Allow vertical scroll */
+}
+
+/* Make sure other sections don't interfere */
+.goals-section,
+.calorie-tracker,
+.progress-tracker,
+.calendar-history {
+  position: relative;
+  z-index: 1; /* Lower than navbar and dropdowns */
+  overflow: visible;
+}
+
+/* Content sections should not create stacking context issues */
+.content-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+/* Navigation tabs container */
+.goals-section[style*="padding: 15px 20px"] {
+  position: relative;
+  z-index: 1;
+  overflow: visible !important;
 }
