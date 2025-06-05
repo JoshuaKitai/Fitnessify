@@ -20,7 +20,6 @@ const CalorieTracker = React.memo(() => {
     const [lookupLoading, setLookupLoading] = useState(false);
     const [deleteEntryId, setDeleteEntryId] = useState(null);
 
-    // Helper function to get auth headers
     const getAuthHeaders = useCallback(() => {
         const token = localStorage.getItem('authToken');
         return {
@@ -57,7 +56,6 @@ const CalorieTracker = React.memo(() => {
             setGoals(data);
         } catch (err) {
             console.error('Error fetching goals:', err);
-            // Keep default goals if fetch fails
         }
     }, [getAuthHeaders]);
 
@@ -66,7 +64,6 @@ const CalorieTracker = React.memo(() => {
         fetchGoals();
     }, [fetchEntries, fetchGoals]);
 
-    // Auto-clear messages
     useEffect(() => {
         if (success) {
             const timer = setTimeout(() => setSuccess(null), 3000);
@@ -148,7 +145,6 @@ const CalorieTracker = React.memo(() => {
         }
     };
 
-    // Updated delete function to use modal confirmation
     const confirmDelete = async (id) => {
         try {
             setLoading(true);
@@ -168,11 +164,10 @@ const CalorieTracker = React.memo(() => {
             setError(err.message || 'Failed to delete entry');
         } finally {
             setLoading(false);
-            setDeleteEntryId(null); // Close modal
+            setDeleteEntryId(null);
         }
     };
 
-    // Memoized calculations
     const totals = useMemo(() => {
         return entries.reduce((acc, e) => ({
             calories: acc.calories + e.calories,
@@ -214,7 +209,6 @@ const CalorieTracker = React.memo(() => {
         );
     };
 
-    // Get the entry name for the delete confirmation modal
     const entryToDelete = entries.find(entry => entry.id === deleteEntryId);
 
     return (
@@ -268,7 +262,6 @@ const CalorieTracker = React.memo(() => {
                 )}
             </div>
 
-            {/* Daily Progress */}
             <div className="totals">
                 <h3>Daily Progress</h3>
                 <ProgressBar
@@ -313,7 +306,6 @@ const CalorieTracker = React.memo(() => {
                 </button>
             </div>
 
-            {/* Delete Confirmation Modal */}
             {deleteEntryId !== null && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -393,7 +385,6 @@ const CalorieTracker = React.memo(() => {
                         </div>
                     )}
 
-                    {/* Macronutrient Chart */}
                     {entries.length > 0 && (
                         <div className="chart-container">
                             <h3>Macronutrient Breakdown</h3>

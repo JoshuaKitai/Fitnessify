@@ -30,7 +30,6 @@ const AuthScreen = () => {
                 </div>
             </div>
 
-            {/* Background decoration */}
             <div className="auth-background">
                 <div className="auth-circle auth-circle-1"></div>
                 <div className="auth-circle auth-circle-2"></div>

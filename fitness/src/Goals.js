@@ -57,7 +57,6 @@ const Goals = React.memo(() => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate numeric fields
         const numericFields = ['daily_calories', 'daily_protein', 'daily_carbs', 'daily_fat'];
         const values = { ...goals };
 
@@ -70,7 +69,6 @@ const Goals = React.memo(() => {
             values[field] = value;
         }
 
-        // Target weight is optional
         if (values.target_weight) {
             const targetWeight = parseFloat(values.target_weight);
             if (isNaN(targetWeight) || targetWeight <= 0) {
@@ -100,7 +98,7 @@ const Goals = React.memo(() => {
 
             setSuccess('Goals updated successfully!');
             setHasChanges(false);
-            await fetchGoals(); // Refresh to get the latest data
+            await fetchGoals();
         } catch (err) {
             setError(err.message || 'Failed to update goals');
         } finally {
@@ -119,7 +117,6 @@ const Goals = React.memo(() => {
         setHasChanges(true);
     };
 
-    // Auto-clear messages
     useEffect(() => {
         if (success) {
             const timer = setTimeout(() => setSuccess(null), 3000);
@@ -134,7 +131,6 @@ const Goals = React.memo(() => {
         }
     }, [error]);
 
-    // Calculate macro percentages and calories
     const totalMacroCalories = (goals.daily_protein * 4) + (goals.daily_carbs * 4) + (goals.daily_fat * 9);
     const macroPercentages = {
         protein: ((goals.daily_protein * 4) / totalMacroCalories * 100).toFixed(1),
@@ -265,7 +261,6 @@ const Goals = React.memo(() => {
                 </form>
             </div>
 
-            {/* Macro Analysis */}
             <div className="totals mt-20">
                 <h3>Macro Analysis</h3>
                 <div className="flex gap-20" style={{ flexWrap: 'wrap', marginBottom: '15px' }}>
@@ -308,7 +303,6 @@ const Goals = React.memo(() => {
                 )}
             </div>
 
-            {/* Goal Recommendations */}
             <div className="totals mt-20">
                 <h3>Quick Goal Presets</h3>
                 <div className="flex gap-10" style={{ flexWrap: 'wrap' }}>

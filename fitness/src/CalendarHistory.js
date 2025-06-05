@@ -4,7 +4,6 @@ import './CalendarHistory.css';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-// Tooltip Portal Component - renders tooltip at document body level
 const TooltipPortal = ({ tooltip }) => {
     if (!tooltip) return null;
 
@@ -44,7 +43,6 @@ const TooltipPortal = ({ tooltip }) => {
         </div>
     );
 
-    // Render tooltip at document body level using portal
     return ReactDOM.createPortal(tooltipElement, document.body);
 };
 
@@ -59,7 +57,6 @@ const CalendarHistory = React.memo(() => {
     const [error, setError] = useState(null);
     const [activeTooltip, setActiveTooltip] = useState(null);
 
-    // Helper function to get auth headers
     const getAuthHeaders = useCallback(() => {
         const token = localStorage.getItem('authToken');
         return {
@@ -68,14 +65,13 @@ const CalendarHistory = React.memo(() => {
         };
     }, []);
 
-    // Create list of week start dates from Jan 2025 to now
     useEffect(() => {
         const startDate = new Date('2025-01-01');
         const today = new Date();
         const weeks = [];
 
         let current = new Date(startDate);
-        current.setDate(current.getDate() - current.getDay()); // Align to Sunday
+        current.setDate(current.getDate() - current.getDay());
 
         while (current <= today) {
             weeks.push(new Date(current));
@@ -84,7 +80,6 @@ const CalendarHistory = React.memo(() => {
 
         setWeekOptions(weeks.reverse());
 
-        // Set default to current week's Sunday
         const currentSunday = new Date();
         currentSunday.setDate(currentSunday.getDate() - currentSunday.getDay());
         const currentSundayStr = currentSunday.toISOString().split('T')[0];
@@ -96,7 +91,6 @@ const CalendarHistory = React.memo(() => {
         }
     }, []);
 
-    // Optimized data fetching using date range endpoints
     const fetchWeekData = useCallback(async (startDate) => {
         if (!startDate) return;
 
@@ -110,7 +104,6 @@ const CalendarHistory = React.memo(() => {
             const startDateStr = startDate.toISOString().split('T')[0];
             const endDateStr = endDate.toISOString().split('T')[0];
 
-            // Fetch both nutrition and progress data in parallel
             const [entriesResponse, progressResponse] = await Promise.all([
                 fetch(`${API_BASE_URL}/entries/date-range?start_date=${startDateStr}&end_date=${endDateStr}`, {
                     headers: getAuthHeaders()
@@ -137,7 +130,6 @@ const CalendarHistory = React.memo(() => {
         }
     }, [getAuthHeaders]);
 
-    // When week changes, update dates and fetch data
     useEffect(() => {
         if (!weekStart) return;
 
@@ -160,7 +152,6 @@ const CalendarHistory = React.memo(() => {
         }), { calories: 0, protein: 0, carbs: 0, fat: 0 });
     }, []);
 
-    // Memoized weekly statistics
     const weeklyStats = useMemo(() => {
         const allEntries = Object.values(entriesByDay).flat();
         const allProgress = Object.values(progressByDay).flat();
@@ -200,7 +191,6 @@ const CalendarHistory = React.memo(() => {
         const newWeekStart = new Date(weekStart);
         newWeekStart.setDate(newWeekStart.getDate() + (direction * 7));
 
-        // Check if the new week is in our options
         const newWeekStr = newWeekStart.toISOString();
         const foundWeek = weekOptions.find(week => week.toISOString() === newWeekStr);
 
@@ -215,15 +205,12 @@ const CalendarHistory = React.memo(() => {
         return date.toDateString() === today.toDateString();
     };
 
-    // Enhanced tooltip management with viewport-relative positioning
     const showTooltip = useCallback((event, tooltipId, content) => {
         const rect = event.currentTarget.getBoundingClientRect();
 
-        // Calculate position relative to viewport (fixed positioning)
         let x = rect.left + (rect.width / 2);
         let y = rect.bottom + 8;
 
-        // Adjust if tooltip would go off-screen
         const tooltipWidth = 350;
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
@@ -235,7 +222,6 @@ const CalendarHistory = React.memo(() => {
             x = tooltipWidth / 2 + 20;
         }
 
-        // If tooltip would go below viewport, show above the element
         if (y + 200 > viewportHeight) {
             y = rect.top - 8;
         }
@@ -343,7 +329,6 @@ const CalendarHistory = React.memo(() => {
                     </div>
                 )}
 
-                {/* Quick stats for the day */}
                 {entries.length > 0 && (
                     <div style={{
                         marginTop: '10px',
@@ -383,7 +368,6 @@ const CalendarHistory = React.memo(() => {
 
             {error && <div className="error">{error}</div>}
 
-            {/* Week Navigation */}
             <div className="week-selector">
                 <button
                     onClick={() => navigateWeek(-1)}
@@ -417,7 +401,6 @@ const CalendarHistory = React.memo(() => {
                 </button>
             </div>
 
-            {/* Weekly Summary Stats */}
             {weeklyStats && (
                 <div className="totals mb-20">
                     <h3>Weekly Summary</h3>
@@ -439,7 +422,6 @@ const CalendarHistory = React.memo(() => {
                 </div>
             )}
 
-            {/* Calendar Grid */}
             <div className="week-grid">
                 {weekDates.map(date => {
                     const dateStr = date.toISOString().split('T')[0];

@@ -14,15 +14,12 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-# Nutritionix credentials
 NUTRITIONIX_APP_ID = os.getenv("NUTRITIONIX_APP_ID")
 NUTRITIONIX_API_KEY = os.getenv("NUTRITIONIX_API_KEY")
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Configuration
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=7)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fitness.db'
@@ -63,7 +60,6 @@ class User(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     is_active = db.Column(db.Boolean, default=True)
 
-    # Relationships
     calorie_entries = db.relationship('CalorieEntry', backref='user', lazy=True, cascade='all, delete-orphan')
     progress_entries = db.relationship('ProgressEntry', backref='user', lazy=True, cascade='all, delete-orphan')
     goals = db.relationship('UserGoals', backref='user', lazy=True, cascade='all, delete-orphan')
@@ -153,7 +149,6 @@ class NutritionCache(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
 
-# Helper function to get current user
 def get_current_user():
     try:
         print("DEBUG: get_current_user() called")
@@ -164,7 +159,6 @@ def get_current_user():
             print("DEBUG: No request context")
             return None
 
-        # Check the Authorization header
         from flask import request
         auth_header = request.headers.get('Authorization')
         print(f"DEBUG: Authorization header: {auth_header[:50] if auth_header else 'None'}...")
@@ -189,7 +183,6 @@ with app.app_context():
     db.create_all()
 
 
-# Basic Routes
 @app.route('/')
 def index():
     return jsonify(message="Tracking Your Goals to Stay Fit")
@@ -217,33 +210,28 @@ def register():
         email = data['email'].strip().lower()
         password = data['password']
 
-        # Validation
         if len(username) < 2 or len(username) > 50:
             return jsonify({"error": "Username must be between 2 and 50 characters"}), 400
 
         if len(password) < 6:
             return jsonify({"error": "Password must be at least 6 characters long"}), 400
 
-        # Check if user already exists
         if User.query.filter_by(username=username).first():
             return jsonify({"error": "Username already exists"}), 409
 
         if User.query.filter_by(email=email).first():
             return jsonify({"error": "Email already registered"}), 409
 
-        # Create new user
         new_user = User(username=username, email=email)
         new_user.set_password(password)
 
         db.session.add(new_user)
         db.session.commit()
 
-        # Create default goals for new user
         default_goals = UserGoals(user_id=new_user.id)
         db.session.add(default_goals)
         db.session.commit()
 
-        # Create access token
         access_token = create_access_token(identity=str(new_user.id))
 
         logger.info(f"New user registered: {username} ({email})")
@@ -272,7 +260,6 @@ def login():
         if not email or not password:
             return jsonify({"error": "Email and password are required"}), 400
 
-        # Find user by email
         user = User.query.filter_by(email=email).first()
 
         if not user or not user.check_password(password):
@@ -281,7 +268,6 @@ def login():
         if not user.is_active:
             return jsonify({"error": "Account is deactivated"}), 401
 
-        # Create access token
         access_token = create_access_token(identity=str(user.id))
 
         logger.info(f"User logged in: {user.username}")
@@ -329,7 +315,6 @@ def get_profile():
         return jsonify({"error": "Failed to fetch profile"}), 500
 
 
-# Nutritionix API (now with authentication)
 @app.route('/api/nutritionix', methods=['POST'])
 @jwt_required()
 def get_nutritionix_data():
@@ -344,7 +329,6 @@ def get_nutritionix_data():
         if not food_query:
             return jsonify({"error": "No query provided"}), 400
 
-        # Check cache first
         try:
             cached = NutritionCache.query.filter(NutritionCache.query == food_query.lower()).first()
             if cached:
@@ -361,7 +345,6 @@ def get_nutritionix_data():
         except Exception as cache_error:
             logger.warning(f"Cache check failed: {cache_error}")
 
-        # For testing purposes, return mock data if API keys not set
         if NUTRITIONIX_APP_ID == "your_app_id_here":
             logger.info(f"Using mock data for: {food_query}")
             mock_result = {
@@ -374,7 +357,6 @@ def get_nutritionix_data():
                 "serving_unit": "serving"
             }
 
-            # Try to cache the mock result
             try:
                 cache_entry = NutritionCache(
                     query=food_query.lower(),
@@ -394,7 +376,6 @@ def get_nutritionix_data():
 
             return jsonify(mock_result)
 
-        # Call real Nutritionix API
         headers = {
             "x-app-id": NUTRITIONIX_APP_ID,
             "x-app-key": NUTRITIONIX_API_KEY,
@@ -422,7 +403,6 @@ def get_nutritionix_data():
                 "serving_unit": food['serving_unit']
             }
 
-            # Cache the real result
             try:
                 cache_entry = NutritionCache(
                     query=food_query.lower(),
@@ -458,7 +438,6 @@ def get_nutritionix_data():
         return jsonify({"error": "Internal server error"}), 500
 
 
-# Calorie entries (now user-specific)
 @app.route('/entries', methods=['GET'])
 @jwt_required()
 def get_entries():
@@ -482,7 +461,6 @@ def add_entry():
         if not data:
             return jsonify({"error": "No data provided"}), 400
 
-        # Validate required fields
         required_fields = ['name', 'calories', 'protein', 'carbs', 'fat']
         for field in required_fields:
             if field not in data:
@@ -490,7 +468,7 @@ def add_entry():
 
         new_entry = CalorieEntry(
             user_id=current_user.id,
-            name=data['name'][:255],  # Truncate if too long
+            name=data['name'][:255],
             calories=float(data['calories']),
             protein=float(data['protein']),
             carbs=float(data['carbs']),
@@ -548,7 +526,6 @@ def delete_entry(id):
         return jsonify({"error": "Failed to delete entry"}), 500
 
 
-# Date range endpoints (now user-specific)
 @app.route('/entries/date-range', methods=['GET'])
 @jwt_required()
 def get_entries_by_date_range():
@@ -603,7 +580,6 @@ def get_entries_by_date(date):
         return jsonify({"error": "Failed to fetch entries"}), 500
 
 
-# Progress entries (now user-specific)
 @app.route('/progress', methods=['POST'])
 @jwt_required()
 def add_progress():
@@ -695,7 +671,6 @@ def get_progress_by_date_range():
             ProgressEntry.date.between(start, end)
         ).order_by(ProgressEntry.date.desc()).all()
 
-        # Group by date
         entries_by_date = {}
         for entry in entries:
             date_str = entry.date.isoformat()
@@ -727,7 +702,6 @@ def get_progress_by_date(date):
         return jsonify({"error": "Failed to fetch progress entries"}), 500
 
 
-# Goals management (now user-specific)
 @app.route('/goals', methods=['GET'])
 @jwt_required()
 def get_goals():
@@ -793,7 +767,6 @@ def update_goals():
         return jsonify({"error": "Failed to update goals"}), 500
 
 
-# Summary statistics (now user-specific)
 @app.route('/stats/summary', methods=['GET'])
 @jwt_required()
 def get_summary_stats():

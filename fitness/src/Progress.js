@@ -19,8 +19,8 @@ const ProgressTracker = React.memo(() => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-    const [chartView, setChartView] = useState('line'); // 'line' or 'bar'
-    const [timeRange, setTimeRange] = useState('all'); // 'all', '3months', '6months', '1year'
+    const [chartView, setChartView] = useState('line');
+    const [timeRange, setTimeRange] = useState('all');
 
     const getAuthHeaders = useCallback(() => {
         const token = localStorage.getItem('authToken');
@@ -59,7 +59,6 @@ const ProgressTracker = React.memo(() => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate form data
         const numericFields = ['person_weight', 'bench', 'squat', 'dead_lift'];
         const values = {};
 
@@ -123,7 +122,6 @@ const ProgressTracker = React.memo(() => {
         fetchProgressEntries();
     }, [fetchProgressEntries]);
 
-    // Auto-clear messages
     useEffect(() => {
         if (success) {
             const timer = setTimeout(() => setSuccess(null), 3000);
@@ -138,7 +136,6 @@ const ProgressTracker = React.memo(() => {
         }
     }, [error]);
 
-    // Filter entries based on time range
     const filteredEntries = useMemo(() => {
         if (timeRange === 'all') return progressEntries;
 
@@ -166,7 +163,6 @@ const ProgressTracker = React.memo(() => {
         return [...filteredEntries].sort((a, b) => new Date(a.date) - new Date(b.date));
     }, [filteredEntries]);
 
-    // Calculate progress statistics
     const progressStats = useMemo(() => {
         if (sortedEntries.length < 2) return null;
 
@@ -193,7 +189,6 @@ const ProgressTracker = React.memo(() => {
         };
     }, [sortedEntries]);
 
-    // Calculate personal records
     const personalRecords = useMemo(() => {
         if (progressEntries.length === 0) return null;
 
@@ -206,7 +201,6 @@ const ProgressTracker = React.memo(() => {
         };
     }, [progressEntries]);
 
-    // Format data for chart display
     const chartData = useMemo(() => {
         return sortedEntries.map(entry => ({
             ...entry,
@@ -241,7 +235,6 @@ const ProgressTracker = React.memo(() => {
             {error && <div className="error">{error}</div>}
             {success && <div className="success">{success}</div>}
 
-            {/* Progress Entry Form */}
             <div className="progress-form">
                 <h3>Log Today's Progress</h3>
                 <form onSubmit={handleSubmit}>
@@ -314,7 +307,6 @@ const ProgressTracker = React.memo(() => {
                 </form>
             </div>
 
-            {/* Progress Statistics */}
             {progressStats && (
                 <div>
                     <h3>Progress Summary</h3>
@@ -348,7 +340,6 @@ const ProgressTracker = React.memo(() => {
                 </div>
             )}
 
-            {/* Personal Records */}
             {personalRecords && (
                 <div className="totals">
                     <h3>Personal Records</h3>
@@ -361,7 +352,6 @@ const ProgressTracker = React.memo(() => {
                 </div>
             )}
 
-            {/* Chart Controls */}
             <div className="flex-between mb-20">
                 <div className="flex gap-10">
                     <select value={timeRange} onChange={(e) => setTimeRange(e.target.value)}>
@@ -386,7 +376,6 @@ const ProgressTracker = React.memo(() => {
                 </button>
             </div>
 
-            {/* Progress Entries Table */}
             <h3>Progress History ({filteredEntries.length} entries)</h3>
             {loading && progressEntries.length === 0 ? (
                 <div className="loading">Loading progress entries...</div>
@@ -434,7 +423,6 @@ const ProgressTracker = React.memo(() => {
                 </div>
             )}
 
-            {/* Delete Confirmation Modal */}
             {deleteEntryId !== null && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -467,7 +455,6 @@ const ProgressTracker = React.memo(() => {
                 </div>
             )}
 
-            {/* Progress Charts */}
             {chartData.length > 1 && (
                 <div className="chart-container">
                     <h3>Progress Over Time - {chartView === 'line' ? 'Trend View' : 'Comparison View'}</h3>

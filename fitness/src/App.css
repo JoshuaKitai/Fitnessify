@@ -1,8 +1,6 @@
-/* HeroUI-Inspired Fitness App Styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* HeroUI Color Palette */
   --primary-50: #f0f9ff;
   --primary-100: #e0f2fe;
   --primary-200: #bae6fd;
@@ -58,23 +56,20 @@
   --danger-800: #991b1b;
   --danger-900: #7f1d1d;
 
-  /* Spacing */
-  --spacing-xs: 0.25rem;    /* 4px */
-  --spacing-sm: 0.5rem;     /* 8px */
-  --spacing-md: 1rem;       /* 16px */
-  --spacing-lg: 1.5rem;     /* 24px */
-  --spacing-xl: 2rem;       /* 32px */
-  --spacing-2xl: 3rem;      /* 48px */
-  --spacing-3xl: 4rem;      /* 64px */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
 
-  /* Border radius */
-  --radius-sm: 0.375rem;    /* 6px */
-  --radius-md: 0.5rem;      /* 8px */
-  --radius-lg: 0.75rem;     /* 12px */
-  --radius-xl: 1rem;        /* 16px */
-  --radius-2xl: 1.5rem;     /* 24px */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
 
-  /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -96,7 +91,6 @@ body {
   min-height: 100vh;
 }
 
-/* Global wrapper */
 .app {
   padding: 0;
   margin: 0;
@@ -104,7 +98,6 @@ body {
   background: linear-gradient(135deg, var(--secondary-50) 0%, var(--primary-50) 100%);
 }
 
-/* Navigation Bar - HeroUI Style */
 .navbar {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
@@ -127,6 +120,7 @@ body {
   left: 0;
   right: 0;
   height: 2px;
+  margin: 0 18px;
   background: linear-gradient(90deg, var(--primary-500), var(--primary-300), var(--success-400));
 }
 
@@ -155,7 +149,6 @@ body {
   text-align: right;
 }
 
-/* Layout */
 .content-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -165,10 +158,9 @@ body {
 
 .content-left,
 .content-right {
-  min-width: 0; /* Prevents grid overflow */
+  min-width: 0;
 }
 
-/* Card Components - HeroUI Style */
 .calorie-tracker,
 .progress-tracker,
 .goals-section,
@@ -192,7 +184,6 @@ body {
   border-color: var(--primary-200);
 }
 
-/* Section Headers */
 h1, h2, h3 {
   color: var(--secondary-900);
   font-weight: 600;
@@ -204,7 +195,6 @@ h1 { font-size: 2rem; }
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1.25rem; }
 
-/* Form Elements - HeroUI Style */
 .form-group {
   margin-bottom: var(--spacing-lg);
 }
@@ -245,7 +235,6 @@ input::placeholder {
   color: var(--secondary-400);
 }
 
-/* Buttons - HeroUI Style */
 button {
   display: inline-flex;
   align-items: center;
@@ -308,7 +297,6 @@ button:disabled {
   min-height: 2rem;
 }
 
-/* Tables - HeroUI Style */
 table {
   width: 100%;
   border-collapse: separate;
@@ -348,7 +336,6 @@ tr:last-child td {
   border-bottom: none;
 }
 
-/* Progress Bars - HeroUI Style */
 .progress-bar {
   background: var(--secondary-200);
   border-radius: var(--radius-md);
@@ -392,7 +379,6 @@ tr:last-child td {
   margin-top: var(--spacing-xs);
 }
 
-/* Enhanced Forms */
 .lookup-form,
 .progress-form,
 .goals-form {
@@ -410,7 +396,6 @@ tr:last-child td {
   margin-bottom: var(--spacing-lg);
 }
 
-/* Totals/Stats Cards */
 .totals {
   background: linear-gradient(135deg, var(--primary-50), var(--secondary-50));
   border: 1px solid var(--primary-200);
@@ -443,7 +428,6 @@ tr:last-child td {
   color: var(--secondary-700);
 }
 
-/* Chart Container */
 .chart-container {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--secondary-200);
@@ -459,7 +443,6 @@ tr:last-child td {
   color: var(--secondary-800);
 }
 
-/* Calendar History */
 .calendar-history {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(16px);
@@ -469,7 +452,7 @@ tr:last-child td {
   box-shadow: var(--shadow-md);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: visible; /* Allow tooltips to extend outside */
+  overflow: visible;
 }
 
 .calendar-history h2 {
@@ -511,7 +494,7 @@ tr:last-child td {
   margin-top: var(--spacing-lg);
   position: relative;
   z-index: 1;
-  overflow: visible; /* Allow tooltips to extend outside */
+  overflow: visible;
 }
 
 .day-cell {
@@ -522,7 +505,7 @@ tr:last-child td {
   min-height: 200px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: visible; /* Allow tooltips to extend outside */
+  overflow: visible;
   z-index: 2;
 }
 
@@ -530,7 +513,7 @@ tr:last-child td {
   transform: translateY(-2px);
   border-color: var(--primary-300);
   box-shadow: var(--shadow-lg);
-  z-index: 50; /* Ensure hovered cell is on top */
+  z-index: 50;
 }
 
 .day-cell.current-day {
@@ -560,7 +543,7 @@ tr:last-child td {
 
 .hover-box:hover {
   transform: scale(1.02);
-  z-index: 200; /* Much higher z-index when hovered */
+  z-index: 200;
 }
 
 .macro-box {
@@ -575,7 +558,6 @@ tr:last-child td {
   border: 1px solid var(--primary-200);
 }
 
-/* Dimmed state for boxes with no data */
 .hover-box[style*="opacity: 0.5"] {
   background: var(--secondary-100) !important;
   color: var(--secondary-600) !important;
@@ -584,25 +566,24 @@ tr:last-child td {
 
 .hover-content {
   display: none;
-  position: fixed; /* Fixed positioning to escape container bounds */
+  position: fixed;
   background: white;
   color: var(--secondary-800);
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
-  z-index: 9999; /* Very high z-index */
+  z-index: 9999;
   min-width: 250px;
   max-width: 350px;
   border: 1px solid var(--secondary-300);
   backdrop-filter: blur(20px);
   font-size: 0.8rem;
   line-height: 1.5;
-  white-space: normal; /* Allow text wrapping */
+  white-space: normal;
   margin-top: var(--spacing-xs);
-  pointer-events: none; /* Prevent interference with mouse events */
+  pointer-events: none;
 }
 
-/* Tooltip arrow */
 .hover-content::before {
   content: '';
   position: absolute;
@@ -613,17 +594,10 @@ tr:last-child td {
   border-bottom: 6px solid white;
 }
 
-/* Remove the CSS hover behavior - JavaScript will handle it */
-/* .hover-box:hover .hover-content {
-  display: block;
-} */
-
-/* JavaScript will handle positioning and display */
 .hover-content.show {
   display: block;
 }
 
-/* Loading States */
 .loading {
   display: flex;
   align-items: center;
@@ -649,7 +623,6 @@ tr:last-child td {
   100% { transform: rotate(360deg); }
 }
 
-/* Alert States */
 .error {
   background: linear-gradient(135deg, var(--danger-50), var(--danger-100));
   border: 1px solid var(--danger-200);
@@ -672,7 +645,6 @@ tr:last-child td {
   box-shadow: var(--shadow-sm);
 }
 
-/* Modal - HeroUI Style */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -737,7 +709,6 @@ tr:last-child td {
   color: var(--secondary-600);
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .content-row {
     grid-template-columns: 1fr;
@@ -802,7 +773,6 @@ tr:last-child td {
   }
 }
 
-/* Utility Classes */
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 .hidden { display: none; }
@@ -816,7 +786,6 @@ tr:last-child td {
 .mb-10 { margin-bottom: var(--spacing-sm); }
 .mb-20 { margin-bottom: var(--spacing-md); }
 
-/* Special Effects */
 .calorie-tracker::before,
 .progress-tracker::before {
   content: '';
@@ -825,11 +794,11 @@ tr:last-child td {
   left: 0;
   right: 0;
   height: 2px;
+  margin: 0 18px;
   background: linear-gradient(90deg, var(--primary-500), var(--success-500));
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
 }
 
-/* Enhanced Lookup Result */
 .lookup-result {
   background: linear-gradient(135deg, var(--success-50), var(--primary-50));
   border: 1px solid var(--success-200);
@@ -856,7 +825,6 @@ tr:last-child td {
   font-size: 1.125rem;
 }
 
-/* Enhanced Week Summary */
 .totals.week-summary {
   background: linear-gradient(135deg, var(--primary-50), var(--success-50));
   border: 1px solid var(--primary-200);
@@ -866,9 +834,6 @@ tr:last-child td {
 .totals.week-summary::before {
   background: linear-gradient(90deg, var(--primary-500), var(--success-500), var(--warning-500));
 }
-/* Add these CSS rules to your App.css to fix the dropdown z-index issue */
-
-/* Fix navbar container to allow dropdown overflow */
 .navbar {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
@@ -881,15 +846,14 @@ tr:last-child td {
   align-items: center;
   box-shadow: var(--shadow-lg);
   position: relative;
-  overflow: visible !important; /* Allow dropdown to extend outside */
-  z-index: 100; /* High but lower than tooltips */
+  overflow: visible !important;
+  z-index: 100;
 }
 
-/* User menu with proper z-index hierarchy */
 .user-menu {
   position: relative;
   display: inline-block;
-  z-index: 200; /* Higher than navbar */
+  z-index: 200;
 }
 
 .user-menu-button {
@@ -927,27 +891,24 @@ tr:last-child td {
   font-size: 0.875rem;
 }
 
-/* Fixed dropdown positioning and z-index */
 .user-menu-dropdown {
   position: absolute;
-  top: calc(100% + 8px); /* Position below button with gap */
+  top: calc(100% + 8px);
   right: 0;
   background: white;
   border: 1px solid var(--secondary-200);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
   min-width: 200px;
-  z-index: 9999 !important; /* Very high z-index */
+  z-index: 9999 !important;
   overflow: visible;
   backdrop-filter: blur(20px);
 
-  /* Animation */
   opacity: 1;
   transform: translateY(0);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Ensure dropdown items are properly styled */
 .user-menu-item {
   display: block;
   width: 100%;
@@ -976,28 +937,25 @@ tr:last-child td {
   background: var(--danger-50);
 }
 
-/* Ensure all content containers allow dropdown overflow */
 .app {
   padding: 0;
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(135deg, var(--secondary-50) 0%, var(--primary-50) 100%);
   position: relative;
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  overflow-y: auto; /* Allow vertical scroll */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-/* Make sure other sections don't interfere */
 .goals-section,
 .calorie-tracker,
 .progress-tracker,
 .calendar-history {
   position: relative;
-  z-index: 1; /* Lower than navbar and dropdowns */
+  z-index: 1;
   overflow: visible;
 }
 
-/* Content sections should not create stacking context issues */
 .content-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1008,7 +966,6 @@ tr:last-child td {
   overflow: visible;
 }
 
-/* Navigation tabs container */
 .goals-section[style*="padding: 15px 20px"] {
   position: relative;
   z-index: 1;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import './App.css';
-import './Auth.css'; // Import auth styles
+import './Auth.css';
 import { AuthProvider, useAuth } from './AuthContext';
 import AuthScreen from './AuthScreen';
 import CalorieTracker from './CalorieTracker';
@@ -10,7 +10,6 @@ import Goals from './Goals';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-// User Menu Component
 const UserMenu = ({ user, onLogout }) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -33,7 +32,7 @@ const UserMenu = ({ user, onLogout }) => {
                     {getInitials(user.username)}
                 </div>
                 <span>{user.username}</span>
-                <span style={{ fontSize: '12px' }}>?</span>
+                <span style={{ fontSize: '12px' }}></span>
             </button>
 
             {isOpen && (
@@ -53,7 +52,6 @@ const UserMenu = ({ user, onLogout }) => {
     );
 };
 
-// Main Dashboard Component (authenticated content)
 const Dashboard = () => {
     const [message, setMessage] = useState('');
     const [currentView, setCurrentView] = useState('dashboard');
@@ -62,7 +60,6 @@ const Dashboard = () => {
     const [stats, setStats] = useState(null);
     const { user, logout } = useAuth();
 
-    // Create authenticated fetch function
     const authenticatedFetch = useCallback(async (url, options = {}) => {
         const token = localStorage.getItem('authToken');
         const headers = {
@@ -80,7 +77,6 @@ const Dashboard = () => {
         });
 
         if (response.status === 401) {
-            // Token expired or invalid
             logout();
             throw new Error('Authentication expired');
         }
@@ -92,7 +88,6 @@ const Dashboard = () => {
         try {
             setLoading(true);
 
-            // Fetch app message and summary stats in parallel
             const [messageRes, statsRes] = await Promise.all([
                 fetch(`${API_BASE_URL}/`),
                 authenticatedFetch(`${API_BASE_URL}/stats/summary?days=7`)
@@ -151,7 +146,6 @@ const Dashboard = () => {
                             </div>
                         </div>
 
-                        {/* Weekly Summary */}
                         {stats && (
                             <div className="goals-section">
                                 <h3>Weekly Summary</h3>
@@ -188,7 +182,6 @@ const Dashboard = () => {
 
     return (
         <div className="app">
-            {/* Enhanced Navigation Bar with User Menu */}
             <div className="navbar">
                 <div className="logo">Fitnessify</div>
                 <h1 className="header-title">{message}</h1>
@@ -205,7 +198,6 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            {/* Navigation Tabs */}
             <div className="goals-section" style={{ padding: '15px 20px', margin: '0 20px 20px 20px' }}>
                 <div className="flex gap-10">
                     {navigationItems.map(item => (
@@ -223,7 +215,6 @@ const Dashboard = () => {
                         </button>
                     ))}
 
-                    {/* Refresh button */}
                     <button
                         onClick={fetchAppData}
                         className="btn-secondary"
@@ -235,14 +226,12 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            {/* Error Display */}
             {error && (
                 <div className="error" style={{ margin: '0 20px 20px 20px' }}>
                     {error}
                 </div>
             )}
 
-            {/* Main Content */}
             {loading && !stats ? (
                 <div className="loading" style={{ minHeight: '200px' }}>
                     Loading your fitness data...
@@ -251,7 +240,6 @@ const Dashboard = () => {
                 renderCurrentView()
             )}
 
-            {/* Quick Actions Footer */}
             <div className="goals-section" style={{ margin: '20px', padding: '20px' }}>
                 <h3>Quick Actions</h3>
                 <div className="flex gap-10" style={{ flexWrap: 'wrap' }}>
@@ -297,7 +285,6 @@ const Dashboard = () => {
     );
 };
 
-// Main App Component with Authentication
 function App() {
     return (
         <AuthProvider>
@@ -306,7 +293,6 @@ function App() {
     );
 }
 
-// App Content Component (handles auth state)
 const AppContent = () => {
     const { user, loading } = useAuth();
 

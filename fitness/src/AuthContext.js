@@ -38,7 +38,6 @@ export const AuthProvider = ({ children }) => {
         }
     }, [API_BASE_URL]);
 
-    // Check if user is already logged in when app loads
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         if (token) {

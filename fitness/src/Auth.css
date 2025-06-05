@@ -1,4 +1,3 @@
-/* Authentication Screen Styles */
 .auth-screen {
   min-height: 100vh;
   display: flex;
@@ -133,7 +132,6 @@
   margin-top: var(--spacing-xl);
 }
 
-/* Background decoration */
 .auth-background {
   position: absolute;
   top: 0;
@@ -185,7 +183,6 @@
   }
 }
 
-/* Enhanced form styles for auth */
 .auth-form .form-group {
   margin-bottom: var(--spacing-lg);
 }
@@ -223,13 +220,11 @@
   color: var(--secondary-400);
 }
 
-/* Loading state */
 .auth-form input:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-/* Error styles specific to auth */
 .auth-form .error {
   background: linear-gradient(135deg, var(--danger-50), var(--danger-100));
   border: 1px solid var(--danger-200);
@@ -248,7 +243,6 @@
   75% { transform: translateX(5px); }
 }
 
-/* Success feedback */
 .auth-success {
   background: linear-gradient(135deg, var(--success-50), var(--success-100));
   border: 1px solid var(--success-200);
@@ -260,7 +254,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* Responsive design for auth */
 @media (max-width: 768px) {
   .auth-screen {
     padding: var(--spacing-md);
@@ -318,7 +311,6 @@
   }
 }
 
-/* User menu styles for authenticated state */
 .user-menu {
   position: relative;
   display: inline-block;
